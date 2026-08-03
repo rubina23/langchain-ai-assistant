@@ -38,7 +38,7 @@ The application follows this workflow:
 
 The application follows this workflow:
 
-```text
+```
 User Question
       ↓
 RunnableBranch
