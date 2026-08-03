@@ -66,45 +66,55 @@ langchain_chatbot/
 │
 ├── .env
 └── .venv/
-
+```
+---
 
 📄 File Description
+```
 app.py
-
+```
 Contains the Streamlit user interface and chat history.
 
+```
 chatbot.py
-
+```
 Contains the main LangChain workflow including:
 
-ChatGroq
-RunnableBranch
-RunnableParallel
-Structured output
-Final chain
-prompts.py
+- ChatGroq
+- RunnableBranch
+- RunnableParallel
+- Structured output
+- Final chain
 
+```
+prompts.py
+```
 Contains the prompts for:
 
-Programming
-Math
-General questions
+- Programming
+- Math
+- General questions
+
+```
 schemas.py
+```
 
 Contains the Pydantic ChatResponse model used for structured AI output.
 
+```
 .env
+```
 
-Stores the Groq API key.
+Stores the Groq API key. Do not upload this file to GitHub.
 
-Do not upload this file to GitHub.
-
+```
 .env.example
-
+```
 Provides an example environment variable format without exposing the real API key.
 
+---
 
-⚙️ Installation
+## ⚙️ Installation
 1. Clone the repository
 ```
 git clone <YOUR_GITHUB_REPOSITORY_URL>
@@ -136,7 +146,7 @@ Create a .env file in the project root:
 GROQ_API_KEY=your_actual_groq_api_key
 ```
 
-▶️ Run the Application
+## ▶️ Run the Application
 
 Start the Streamlit application:
 ```
@@ -144,7 +154,7 @@ streamlit run app.py
 ```
 The application will open in your browser.
 
-💬 Example Questions
+## 💬 Example Questions
 Programming
 ```
 What is a Python function?
@@ -159,8 +169,8 @@ General
 ```
 What is the capital of Bangladesh?
 ```
-
-📊 Structured Response
+---
+## 📊 Structured Response
 
 The application produces structured responses containing:
 
@@ -185,7 +195,7 @@ Keywords:
 Python, function, programming, code
 ```
 
-🔀 Conditional Routing
+## 🔀 Conditional Routing
 
 RunnableBranch determines which workflow should process the question.
 
@@ -195,7 +205,10 @@ Math        → Math Chain
 Other       → General Chain
 ```
 
-⚡ Parallel Processing
+---
+
+
+## ⚡Parallel Processing
 
 RunnableParallel processes the answer and summary workflows in parallel.
 ```
@@ -205,7 +218,7 @@ RunnableParallel processes the answer and summary workflows in parallel.
               Answer         Summary
 ```
 
-🔐 Environment Variables
+## 🔐 Environment Variables
 
 The application requires:
 ```
