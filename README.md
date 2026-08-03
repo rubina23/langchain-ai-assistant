@@ -40,13 +40,13 @@ User Question
 RunnableBranch
       ↓
 ┌────────────┬──────────┬───────────┐
-│Programming Prompt│   Math Prompt   │  General Prompt│
+│Programming │  Math    │  General  │
 └────────────┴──────────┴───────────┘
       ↓
 RunnableParallel
       ↓
 ┌───────────────┬───────────────┐
-│Main Answer    │    Summary    │
+│  Main Answer  │    Summary    │
 └───────────────┴───────────────┘
       ↓
 Structured Output
