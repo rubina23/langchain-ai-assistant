@@ -28,11 +28,12 @@ The application automatically identifies whether a user's question is related to
 - Pydantic
 - Streamlit
 - python-dotenv
+---
 
 ## 🧠 LangChain Architecture
 
 The application follows this workflow:
-
+```
 User Question
       ↓
 RunnableBranch
@@ -48,6 +49,9 @@ Structured Output
 Pydantic ChatResponse
       ↓
 Streamlit UI
+```
+
+---
 
 ## 📂 Project Structure
 
