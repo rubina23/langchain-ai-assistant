@@ -45,7 +45,9 @@ RunnableBranch
       ↓
 RunnableParallel
       ↓
-Answer + Summary
+┌───────────────┬───────────────┐
+│     Answer    │    Summary    │
+└───────────────┴───────────────┘
       ↓
 Structured Output
       ↓
@@ -54,6 +56,14 @@ Pydantic ChatResponse
 Streamlit UI
 
 ```
+
+
+RunnableParallel
+      ↓
+┌───────────────┬───────────────┐
+│     Answer    │    Summary    │
+└───────────────┴───────────────┘
+      ↓
 
 ---
 
