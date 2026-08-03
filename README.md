@@ -38,6 +38,24 @@ User Question
       ↓
 RunnableBranch
       ↓
+┌────────────┬──────────┬───────────┐
+│ Programming│   Math   │  General  │
+└────────────┴──────────┴───────────┘
+      ↓
+RunnableParallel
+      ↓
+Answer + Summary
+      ↓
+Structured Output
+      ↓
+Pydantic ChatResponse
+      ↓
+Streamlit UI
+
+User Question
+      ↓
+RunnableBranch
+      ↓
 Programming / Math / General
       ↓
 RunnableParallel
