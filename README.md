@@ -34,6 +34,33 @@ The application automatically identifies whether a user's question is related to
 
 The application follows this workflow:
 ```
+## 🧠 LangChain Architecture
+
+The application follows this workflow:
+
+```text
+User Question
+      ↓
+RunnableBranch
+      ↓
+┌───────────────┬──────────┬─────────────┐
+│ Programming   │   Math   │   General   │
+│     Chain     │   Chain  │    Chain    │
+└───────────────┴──────────┴─────────────┘
+      ↓
+RunnableParallel
+      ↓
+┌───────────────┬───────────────┐
+│     Answer    │    Summary    │
+└───────────────┴───────────────┘
+      ↓
+Structured Output
+      ↓
+Pydantic ChatResponse
+      ↓
+Streamlit UI
+
+
 User Question
       ↓
 RunnableBranch
