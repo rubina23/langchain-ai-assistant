@@ -57,14 +57,6 @@ Streamlit UI
 
 ```
 
-
-RunnableParallel
-      ↓
-┌───────────────┬───────────────┐
-│     Answer    │    Summary    │
-└───────────────┴───────────────┘
-      ↓
-
 ---
 
 ## 📂 Project Structure
