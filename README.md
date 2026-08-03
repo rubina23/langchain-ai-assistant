@@ -63,9 +63,7 @@ langchain_chatbot/
 ├── .env.example
 ├── .gitignore
 ├── README.md
-│
-├── .env
-└── .venv/
+
 ```
 ---
 
@@ -117,8 +115,8 @@ Provides an example environment variable format without exposing the real API ke
 ## ⚙️ Installation
 1. Clone the repository
 ```
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd langchain_chatbot
+git clone https://github.com/rubina23/langchain-ai-assistant.git
+cd langchain-ai-assistant
 ```
 
 2. Create a virtual environment
