@@ -10,12 +10,6 @@ from prompts import (
     general_prompt,
 )
 
-# from langchain_core.runnables import (
-#     RunnableBranch,
-#     RunnableParallel,
-#     RunnableLambda,
-# )
-
 load_dotenv()
 
 
@@ -86,10 +80,6 @@ branch = RunnableBranch(
     general_chain,
 )
 
-
-# =========================
-# 3. RunnableParallel
-# =========================
 
 # =========================
 # 3. RunnableParallel
@@ -194,88 +184,3 @@ if __name__ == "__main__":
     print("\nFinal Structured Response:")
     print(response)
 
-
-# summary_prompt = PromptTemplate.from_template(
-#     """
-# Give a short summary of this answer:
-
-# {answer}
-# """
-# )
-
-# summary_chain = summary_prompt | llm
-
-
-# parallel_chain = RunnableParallel(
-#     answer=branch,
-#     summary=lambda x: summary_chain.invoke({
-#         "answer": x["answer"].content
-#     }),
-# )
-
-
-# # =========================
-# # 4. Pydantic Structured Output
-# # =========================
-
-# structured_llm = llm.with_structured_output(ChatResponse)
-
-
-# structured_prompt = PromptTemplate.from_template(
-#     """
-# You are a helpful AI assistant.
-
-# Create a structured response using the information below.
-
-# User Question:
-# {question}
-
-# Answer:
-# {answer}
-
-# Summary:
-# {summary}
-
-# Return:
-# - answer: the main answer
-# - summary: a short summary
-# - confidence: a number between 0 and 1
-# - category: Programming, Math, or General
-# - keywords: important keywords from the question
-# """
-# )
-
-
-# # =========================
-# # 5. Final Chain
-# # =========================
-
-# final_chain = (
-#     RunnableParallel(
-#         question=lambda x: x["question"],
-#         result=parallel_chain,
-#     )
-#     | RunnableParallel(
-#         question=lambda x: x["question"],
-#         answer=lambda x: x["result"]["answer"].content,
-#         summary=lambda x: x["result"]["summary"].content,
-#     )
-#     | structured_prompt
-#     | structured_llm
-# )
-
-
-# # =========================
-# # 6. Run
-# # =========================
-
-# if __name__ == "__main__":
-
-#     question = input("Ask a question: ")
-
-#     response = final_chain.invoke({
-#         "question": question
-#     })
-
-#     print("\nFinal Structured Response:")
-#     print(response)

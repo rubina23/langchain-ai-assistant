@@ -8,8 +8,8 @@ from chatbot import final_chain
 # -----------------------------
 
 st.set_page_config(
-    page_title="AI Assistant",
-    page_icon="🤖",
+    page_title="LangChain Chatboat",
+    page_icon="",
     layout="centered",
 )
 
@@ -26,7 +26,7 @@ if "messages" not in st.session_state:
 # Header
 # -----------------------------
 
-st.title("🤖 AI Assistant")
+st.title("LangChain Chatboat")
 st.caption("Programming • Math • General")
 
 st.write(
@@ -49,10 +49,10 @@ for message in st.session_state.messages:
         else:
             response = message["content"]
 
-            st.write("### 💬 Answer")
+            st.write("### Answer")
             st.write(response["answer"])
 
-            st.write("### 📋 Summary")
+            st.write("### Summary")
             st.write(response["summary"])
 
             col1, col2 = st.columns(2)
@@ -69,7 +69,7 @@ for message in st.session_state.messages:
                     response["category"]
                 )
 
-            st.write("### 🔑 Keywords")
+            st.write("### Keywords")
 
             if response["keywords"]:
                 st.write(
@@ -113,10 +113,10 @@ if question:
                     "question": question
                 })
 
-                st.write("### 💬 Answer")
+                st.write("### Answer")
                 st.write(response.answer)
 
-                st.write("### 📋 Summary")
+                st.write("### Summary")
                 st.write(response.summary)
 
                 col1, col2 = st.columns(2)
@@ -133,7 +133,7 @@ if question:
                         response.category
                     )
 
-                st.write("### 🔑 Keywords")
+                st.write("### Keywords")
 
                 if response.keywords:
                     st.write(
