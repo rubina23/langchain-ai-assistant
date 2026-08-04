@@ -77,7 +77,7 @@ langchain_chatbot/
 ```
 ---
 
-📄 File Description
+File Description
 ```
 app.py
 ```
@@ -122,7 +122,7 @@ Provides an example environment variable format without exposing the real API ke
 
 ---
 
-## ⚙️ Installation
+## Installation
 1. Clone the repository
 ```
 git clone https://github.com/rubina23/langchain-ai-assistant.git
@@ -154,7 +154,7 @@ Create a .env file in the project root:
 GROQ_API_KEY=your_actual_groq_api_key
 ```
 
-## ▶️ Run the Application
+## Run the Application
 
 Start the Streamlit application:
 ```
@@ -178,7 +178,7 @@ General
 What is the capital of Bangladesh?
 ```
 ---
-## 📊 Structured Response
+## Structured Response
 
 The application produces structured responses containing:
 
@@ -203,7 +203,7 @@ Keywords:
 Python, function, programming, code
 ```
 
-## 🔀 Conditional Routing
+## Conditional Routing
 
 RunnableBranch determines which workflow should process the question.
 
@@ -216,7 +216,7 @@ Other       → General Chain
 ---
 
 
-## ⚡Parallel Processing
+## Parallel Processing
 
 RunnableParallel processes the answer and summary workflows in parallel.
 ```
@@ -226,7 +226,7 @@ RunnableParallel processes the answer and summary workflows in parallel.
               Answer         Summary
 ```
 
-## 🔐 Environment Variables
+## Environment Variables
 
 The application requires:
 ```
