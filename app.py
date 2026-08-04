@@ -8,7 +8,7 @@ from chatbot import final_chain
 # -----------------------------
 
 st.set_page_config(
-    page_title="LangChain Chatboat",
+    page_title="LangChain Chatbot",
     page_icon="",
     layout="centered",
 )
@@ -26,7 +26,7 @@ if "messages" not in st.session_state:
 # Header
 # -----------------------------
 
-st.title("LangChain Chatboat")
+st.title("LangChain Chatbot")
 st.caption("Programming • Math • General")
 
 st.write(

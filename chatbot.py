@@ -1,7 +1,11 @@
+
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
-from langchain_core.runnables import RunnableBranch, RunnableParallel, RunnableLambda
+from langchain_core.runnables import (
+    RunnableBranch,
+    RunnableParallel,
+)
 
 from schemas import ChatResponse
 from prompts import (
@@ -24,13 +28,8 @@ llm = ChatGroq(
 
 
 # =========================
-# 2. RunnableBranch
+# 2. Routing Functions
 # =========================
-
-programming_chain = programming_prompt | llm
-math_chain = math_prompt | llm
-general_chain = general_prompt | llm
-
 
 def is_programming_question(data):
     question = data["question"].lower()
@@ -74,54 +73,81 @@ def is_math_question(data):
     )
 
 
-branch = RunnableBranch(
-    (is_programming_question, programming_chain),
-    (is_math_question, math_chain),
-    general_chain,
-)
+# ==========================================================
+# # Summary Prompts
+# ==========================================================
 
-
-# =========================
-# 3. RunnableParallel
-# =========================
-
-summary_prompt = PromptTemplate.from_template(
+programming_summary_prompt = PromptTemplate.from_template(
     """
-Give a short summary of this answer:
+Give a short summary of the key points that should be
+covered when answering this programming question.
 
-{answer}
+User Question:
+{question}
 """
 )
 
-summary_chain = summary_prompt | llm
+math_summary_prompt = PromptTemplate.from_template(
+    """
+Give a short summary of the key points that should be
+covered when answering this mathematics question.
 
+User Question:
+{question}
+"""
+)
 
-# First get the answer from the branch
-answer_chain = RunnableParallel(
-    question=lambda x: x["question"],
-    answer=branch,
+general_summary_prompt = PromptTemplate.from_template(
+    """
+Give a short summary of the key points that should be
+covered when answering this general question.
+
+User Question:
+{question}
+"""
 )
 
 
-# Then create the summary using the answer
-def add_summary(data):
-    summary = summary_chain.invoke({
-        "answer": data["answer"].content
-    })
+# ==========================================================
+# # RunnableParallel
+#
+# Each branch now generates TWO outputs in parallel:
+# 1. Answer
+# 2. Summary
+# ==========================================================
 
-    return {
-        "question": data["question"],
-        "answer": data["answer"],
-        "summary": summary,
-    }
+programming_parallel = RunnableParallel(
+    answer=programming_prompt | llm,
+    summary=programming_summary_prompt | llm,
+)
+
+math_parallel = RunnableParallel(
+    answer=math_prompt | llm,
+    summary=math_summary_prompt | llm,
+)
+
+general_parallel = RunnableParallel(
+    answer=general_prompt | llm,
+    summary=general_summary_prompt | llm,
+)
 
 
-parallel_chain = answer_chain | RunnableLambda(add_summary)
+# ==========================================================
+# # RunnableBranch
+#
+# RunnableBranch selects the appropriate parallel pipeline.
+# ==========================================================
+
+branch = RunnableBranch(
+    (is_programming_question, programming_parallel),
+    (is_math_question, math_parallel),
+    general_parallel,
+)
 
 
-# =========================
-# 4. Pydantic Structured Output
-# =========================
+# ==========================================================
+# 3. Pydantic Structured Output
+# ==========================================================
 
 structured_llm = llm.with_structured_output(ChatResponse)
 
@@ -143,7 +169,7 @@ Summary:
 
 Return:
 - answer: the main answer
-- summary: a short summary
+- summary: a short summary of the answer
 - confidence: a number between 0 and 1
 - category: Programming, Math, or General
 - keywords: important keywords from the question
@@ -151,18 +177,23 @@ Return:
 )
 
 
-# =========================
-# 5. Final Chain
-# =========================
+# ==========================================================
+# 4. Final Chain
+# ==========================================================
+
+# #
+# The branch already returns answer + summary.
+# We now prepare those outputs for the structured model.
 
 final_chain = (
-    parallel_chain
-    | RunnableLambda(
-        lambda x: {
-            "question": x["question"],
-            "answer": x["answer"].content,
-            "summary": x["summary"].content,
-        }
+    RunnableParallel(
+        question=lambda x: x["question"],
+        result=branch,
+    )
+    | RunnableParallel(
+        question=lambda x: x["question"],
+        answer=lambda x: x["result"]["answer"].content,
+        summary=lambda x: x["result"]["summary"].content,
     )
     | structured_prompt
     | structured_llm
@@ -170,7 +201,7 @@ final_chain = (
 
 
 # =========================
-# 6. Run
+# 5. Run
 # =========================
 
 if __name__ == "__main__":
