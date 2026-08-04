@@ -1,4 +1,4 @@
-# 🤖 LangChain AI Assistant
+# 🤖 LangChain Chatboat
 
 A structured AI assistant built with LangChain, Groq, Pydantic, and Streamlit.
 
