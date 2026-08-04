@@ -110,12 +110,6 @@ schemas.py
 Contains the Pydantic ChatResponse model used for structured AI output.
 
 ```
-.env
-```
-
-Stores the Groq API key. Do not upload this file to GitHub.
-
-```
 .env.example
 ```
 Provides an example environment variable format without exposing the real API key.
@@ -182,11 +176,11 @@ What is the capital of Bangladesh?
 
 The application produces structured responses containing:
 
-Answer
-Summary
-Confidence
-Category
-Keywords
+- Answer
+- Summary
+- Confidence
+- Category
+- Keywords
 
 Example:
 
@@ -232,5 +226,5 @@ The application requires:
 ```
 GROQ_API_KEY=your_groq_api_key
 ```
-Never expose the real API key publicly.
+
 
