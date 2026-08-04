@@ -19,6 +19,8 @@ The application automatically identifies whether a user's question is related to
 - Interactive Streamlit UI
 - Groq LLM integration
 
+---
+
 ## Technologies Used
 
 - Python
@@ -28,6 +30,7 @@ The application automatically identifies whether a user's question is related to
 - Pydantic
 - Streamlit
 - python-dotenv
+
 ---
 
 ## LangChain Architecture
@@ -147,6 +150,7 @@ Create a .env file in the project root:
 ```
 GROQ_API_KEY=your_actual_groq_api_key
 ```
+---
 
 ## Run the Application
 
