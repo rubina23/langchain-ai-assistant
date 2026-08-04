@@ -220,11 +220,3 @@ RunnableParallel processes the answer and summary workflows in parallel.
               Answer         Summary
 ```
 
-## Environment Variables
-
-The application requires:
-```
-GROQ_API_KEY=your_groq_api_key
-```
-
-
