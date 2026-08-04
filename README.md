@@ -1,10 +1,10 @@
-# 🤖 LangChain Chatboat
+# LangChain Chatboat
 
 A structured AI assistant built with LangChain, Groq, Pydantic, and Streamlit.
 
 The application automatically identifies whether a user's question is related to Programming, Math, or General topics and routes the question to the appropriate workflow.
 
-## 🚀 Features
+## Features
 
 - Programming question handling
 - Math question handling
@@ -19,7 +19,7 @@ The application automatically identifies whether a user's question is related to
 - Interactive Streamlit UI
 - Groq LLM integration
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - Python
 - LangChain
@@ -30,7 +30,7 @@ The application automatically identifies whether a user's question is related to
 - python-dotenv
 ---
 
-## 🧠 LangChain Architecture
+## LangChain Architecture
 
 The application follows this workflow:
 ```
@@ -59,7 +59,7 @@ Streamlit UI
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 langchain_chatbot/
@@ -162,7 +162,7 @@ streamlit run app.py
 ```
 The application will open in your browser.
 
-## 💬 Example Questions
+## Example Questions
 Programming
 ```
 What is a Python function?
